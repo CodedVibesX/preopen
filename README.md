@@ -2,6 +2,8 @@
 
 **The newest food businesses in New York City, so new the Health Department has not inspected them yet, turned into walkable door to door days and a HubSpot import.** Built as a GTM Engineer work sample for [a1mobile](https://a1mobile.com)'s New York sales team.
 
+**Live card: [codedvibesx.github.io/preopen](https://codedvibesx.github.io/preopen/)** &nbsp; [![test and deploy](https://github.com/CodedVibesX/preopen/actions/workflows/pages.yml/badge.svg)](https://github.com/CodedVibesX/preopen/actions/workflows/pages.yml) (the badge is green only when the 64 checks pass on the committed data, before every deploy)
+
 ![The hand check route drawing itself, door by door](docs/hero.png)
 
 ## The problem
