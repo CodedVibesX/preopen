@@ -1,0 +1,64 @@
+name: test and deploy
+
+# Rebuilds the card from the committed snapshot and publishes it. npm test is the gate: it re-runs the whole pipeline
+# on the real data and fails the build if any door on a route is a chain, a site, an institution or a pop up, if an
+# expediter's shared phone leaks into a company's Phone Number, or if a phone number shows up in the card data.
+# A green badge means those still hold, not just that the site compiled.
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Score, route and export from the committed snapshot
+        run: npm start
+
+      - name: Test (unit tests plus invariants on the real snapshot)
+        run: npm test
+
+      - name: Build static site
+        run: npm run build
+        env:
+          GITHUB_PAGES: "true"
+
+      - name: Keep _next/ from being stripped by Jekyll
+        run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

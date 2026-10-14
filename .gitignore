@@ -1,0 +1,11 @@
+node_modules/
+out/
+leads/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+*.log
+.env*
+validation/walk.csv.bak
+BUILD_LOG.md
+validation/walk.csv

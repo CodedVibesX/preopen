@@ -1,0 +1,31 @@
+{
+  "name": "preopen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turns NYC restaurants that applied for a Health Department permit but have not been inspected yet into scored, walkable door to door routes and a HubSpot import.",
+  "scripts": {
+    "fetch": "tsx src/cli.ts fetch",
+    "start": "tsx src/cli.ts run",
+    "diff": "tsx src/cli.ts diff",
+    "walk": "tsx src/cli.ts walk",
+    "test": "tsx tests/run.ts",
+    "typecheck": "tsc --noEmit",
+    "dev": "next dev -p 3007",
+    "build": "next build",
+    "shots": "node scripts/shoot.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "puppeteer-core": "^25.2.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}
